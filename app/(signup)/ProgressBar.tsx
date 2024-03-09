@@ -1,3 +1,5 @@
+import cn from "classnames";
+
 export default function ProgressBar({
   numerate,
   denominator,
@@ -10,7 +12,10 @@ export default function ProgressBar({
   return (
     <div className="w-full h-max py-5">
       <div className="w-full h-0.5 bg-grey-100">
-        <div className={`${widthFraction} h-0.5 bg-primary-black`} />
+        <div
+          style={{ width: `${(numerate / denominator) * 100}%` }}
+          className="w-1/4 h-0.5 bg-primary-black"
+        />
       </div>
     </div>
   );

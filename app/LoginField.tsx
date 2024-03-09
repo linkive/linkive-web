@@ -1,7 +1,7 @@
 "use client";
 import { Button } from "@/components/Button";
 import { PasswordTextfield, IdTextfield } from "@/components/Textfield";
-import { validateEmail } from "@/lib/utils/validateEmail";
+import { validateEmail } from "@/lib/utils/validateString";
 import { useState } from "react";
 
 interface Credentials {

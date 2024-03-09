@@ -5,11 +5,11 @@ import Close from "@/public/icon/circular_close.svg";
 import cn from "classnames";
 
 interface TextFeildProps {
-  type?: "text" | "password";
+  type?: "text" | "password" | "number";
   placeholder: string;
   name: string;
   value: string;
-  inputMode?: "text" | "email";
+  inputMode?: "text" | "email" | "numeric";
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void; // input onchange 함수
 
   error?: boolean;
@@ -147,6 +147,38 @@ export function PasswordTextfield(props: TextFeildProps) {
     <Textfield
       {...props}
       type={showPw ? "text" : "password"}
+      children={children}
+    />
+  );
+}
+
+// textfield 중 type number에 해당하는 Textfield, 현재는 number라고 명명
+// MARK: 전체 삭제가 추가됨, 다 들어간다면 아예 구분하는 것이 좋을 듯
+export function NumberTextfield(props: TextFeildProps) {
+  const handleClearClick = () => {
+    const event = {
+      target: { value: "", name: props.name },
+      currentTarget: { value: "", name: props.name },
+    } as unknown as React.ChangeEvent<HTMLInputElement>;
+
+    props.onChange(event);
+  };
+
+  const children: React.ReactNode = (
+    <>
+      {props.value !== "" && (
+        <button onClick={handleClearClick}>
+          <Close />
+        </button>
+      )}
+    </>
+  );
+
+  return (
+    <Textfield
+      {...props}
+      type="number"
+      inputMode="numeric"
       children={children}
     />
   );
