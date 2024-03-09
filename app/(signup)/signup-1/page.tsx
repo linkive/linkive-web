@@ -120,6 +120,7 @@ export default function SignUp() {
       <div className="flex flex-col gap-3">
         {terms.map((term) => (
           <CheckField
+            key={`${term.id}`}
             id={`${term.id}`}
             link="/signup"
             checked={term.isAgreed}
