@@ -1,12 +1,6 @@
 "use client";
-import { BaseTopBar } from "@/components/TopBar";
-import useScrollBlock from "@/hooks/useScrollBlock";
-import Back from "@/public/icon/back.svg";
-import ProgressBar from "../ProgressBar";
-import CheckBox from "@/components/CheckBox";
-import Link from "next/link";
 import React, { useState, useEffect } from "react";
-import { usePathname, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 import CheckBoxActive from "@/public/icon/checkBox_on.svg";
 import CheckBoxInactive from "@/public/icon/checkBox_off.svg";

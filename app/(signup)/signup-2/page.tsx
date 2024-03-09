@@ -3,7 +3,7 @@ import { IdTextfield } from "@/components/Textfield";
 import { useState } from "react";
 import { validateEmail } from "@/lib/utils/validateString";
 import { Button } from "@/components/Button";
-import { usePathname, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 export default function SignUp2() {
   const [id, setId] = useState("");

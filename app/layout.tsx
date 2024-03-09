@@ -19,12 +19,6 @@ export default function RootLayout({
 }>) {
   return (
     <>
-      {/* <Head>
-        <meta
-          name="viewport"
-          content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
-        />
-      </Head> */}
       <html lang="ko" className={pretandard.className}>
         <body>{children}</body>
       </html>

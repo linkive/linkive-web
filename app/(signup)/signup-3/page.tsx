@@ -7,7 +7,7 @@ import {
   isLength8To20,
 } from "@/lib/utils/validateString";
 import { Button } from "@/components/Button";
-import { usePathname, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import CheckDefault from "@/public/icon/valid_check_default.svg";
 import CheckActive from "@/public/icon/valid_check_active.svg";
 import CheckError from "@/public/icon/valid_check_error.svg";

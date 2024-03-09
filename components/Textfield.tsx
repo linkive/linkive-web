@@ -110,7 +110,9 @@ export function IdTextfield(props: TextFeildProps) {
   );
 
   return (
-    <Textfield {...props} type="text" inputMode="email" children={children} />
+    <Textfield {...props} type="text" inputMode="email">
+      {children}
+    </Textfield>
   );
 }
 
@@ -144,11 +146,9 @@ export function PasswordTextfield(props: TextFeildProps) {
   );
 
   return (
-    <Textfield
-      {...props}
-      type={showPw ? "text" : "password"}
-      children={children}
-    />
+    <Textfield {...props} type={showPw ? "text" : "password"}>
+      {children}
+    </Textfield>
   );
 }
 
@@ -175,11 +175,8 @@ export function NumberTextfield(props: TextFeildProps) {
   );
 
   return (
-    <Textfield
-      {...props}
-      type="number"
-      inputMode="numeric"
-      children={children}
-    />
+    <Textfield {...props} type="number" inputMode="numeric">
+      {children}
+    </Textfield>
   );
 }

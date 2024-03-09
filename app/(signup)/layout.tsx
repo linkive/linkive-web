@@ -23,7 +23,6 @@ export default function LoginLayout({
   children,
 }: {
   children: React.ReactNode;
-  btnName: string;
 }) {
   useScrollBlock(true);
   const pathOrder = usePathname().slice(-1);
