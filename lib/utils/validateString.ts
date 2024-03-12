@@ -15,7 +15,7 @@ export function isContainNumber(str: string): boolean {
 }
 
 export function isContainsSpecialCharacter(str: string): boolean {
-  return /[!@#$%^&*(),.?":{}|<>]/.test(str);
+  return /[`~!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(str);
 }
 
 export function isLength8To20(str: string): boolean {

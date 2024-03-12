@@ -16,6 +16,7 @@ export default function LoginField() {
   });
   const [isEmailValid, setIsEmailValid] = useState<boolean>(true);
   const [isUserValid, setIsUserValid] = useState<boolean>(true);
+
   const [idErrorMsg, setIdErrorMsg] = useState<string | null>(
     "이메일 형식을 다시 확인해주세요"
   );
@@ -23,6 +24,9 @@ export default function LoginField() {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setCredentials({ ...credentials, [name]: value });
+    if (value === "") {
+      setIsUserValid(true);
+    }
     if (name === "username") {
       setIsEmailValid(validateEmail(value));
       if (validateEmail(value)) {
@@ -64,7 +68,7 @@ export default function LoginField() {
           name="username"
           value={credentials.username}
           onChange={handleChange}
-          error={!isEmailValid || !isUserValid}
+          error={credentials.username !== "" && (!isEmailValid || !isUserValid)}
           errorMsg={idErrorMsg}
         />
         <PasswordTextfield
@@ -72,10 +76,14 @@ export default function LoginField() {
           name="password"
           value={credentials.password}
           onChange={handleChange}
-          error={!isUserValid}
-          errorMsg="아이디 또는 비밀번호가 일치하지 않습니다"
+          error={credentials.password !== "" && !isUserValid}
           className="mt-2.5"
         />
+        {!isUserValid && (
+          <span className="mt-2.5 text-xs text-primary-red">
+            아이디 또는 비밀번호가 일치하지 않습니다
+          </span>
+        )}
       </div>
 
       <Button text="로그인" onClick={handleSubmit} disabled={!isFormFilled} />

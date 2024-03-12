@@ -40,9 +40,7 @@ export default function Login() {
           <span>|</span>
           <Link href="/member/password">비밀번호 찾기</Link>
           <span>|</span>
-          <Link className="text-primary-black" href="/signup-1">
-            회원가입
-          </Link>
+          <Link href="/signup-1">회원가입</Link>
         </div>
 
         {/* social login */}

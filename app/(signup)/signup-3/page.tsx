@@ -85,7 +85,7 @@ export default function SignUp2() {
           value={password}
           onChange={handleChange}
           error={!isPwValid && password !== ""}
-          errorMsg="하딘의 조건을 확인해주세요"
+          errorMsg="하단의 조건을 확인해주세요"
         />
 
         <div className="flex gap-3 ">
