@@ -3,6 +3,7 @@ import "@/style/globals.css";
 import localFont from "next/font/local";
 import Head from "next/head";
 import AuthSession from "./AuthSession";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const pretandard = localFont({
   src: "../public/fonts/PretendardGOVVariable.woff2",
@@ -23,6 +24,7 @@ export default function RootLayout({
       <html lang="ko" className={pretandard.className}>
         <body>
           <AuthSession>{children}</AuthSession>
+          <SpeedInsights />
         </body>
       </html>
     </>
