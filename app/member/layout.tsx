@@ -1,9 +1,9 @@
 "use client";
 import { BaseTopBar } from "@/components/TopBar";
 import Back from "@/public/icon/back.svg";
-import ProgressBar from "./ProgressBar";
 import useScrollBlock from "@/hooks/useScrollBlock";
 import { usePathname, useRouter } from "next/navigation";
+import Nav from "./Nav";
 
 const TopBar = () => {
   const router = useRouter();
@@ -13,7 +13,9 @@ const TopBar = () => {
         <Back />
       </button>
 
-      <h1 className="font-medium flex-shrink-0 text-primary-black">로그인</h1>
+      <h1 className="font-medium flex-shrink-0 text-primary-black">
+        아이디 / 비밀번호 찾기
+      </h1>
       <div className="w-full" />
     </BaseTopBar>
   );
@@ -29,14 +31,14 @@ export default function LoginLayout({
 
   return (
     <main className="w-full h-dvh">
-      <TopBar />
+      <div className="px-3">
+        <TopBar />
+      </div>
 
-      <div className="flex flex-col w-full h-full px-3 belowTopBar">
-        <ProgressBar numerate={Number(pathOrder)} denominator={4} />
+      <div className="flex flex-col w-full h-full belowTopBar">
+        <Nav />
 
-        <div className="flex w-full flex-grow flex-col gap-10 pt-[30px]">
-          {children}
-        </div>
+        <div className="flex w-full flex-grow flex-col">{children}</div>
         {/* safeArea */}
         <div className="w-full h-[34px]" />
       </div>

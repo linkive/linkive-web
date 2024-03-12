@@ -27,6 +27,9 @@ const config: Config = {
       boxShadow: {
         btn: "0px 0px 4px rgba(0, 0, 0, 0.50)",
       },
+      fontFamily: {
+        pretandard: ["PretendardGOVVariable", "sans-serif"],
+      },
     },
   },
   plugins: [],

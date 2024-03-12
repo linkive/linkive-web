@@ -7,18 +7,18 @@ import { useRouter } from "next/navigation";
 
 export default function SignUp2() {
   const [phoneNumber, setPhoneNumber] = useState("");
-  const [isPhoneNumberValid, setIsPhoneNumberValidd] = useState<boolean>(false);
+  const [isPhoneNumberValid, setIsPhoneNumberValid] = useState<boolean>(false);
   const router = useRouter();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const number = e.target.value;
     setPhoneNumber(number);
 
-    setIsPhoneNumberValidd(isPhoneNumber(number));
+    setIsPhoneNumberValid(isPhoneNumber(number));
   };
   const submitTerms = () => {
     //TODO: 아이디 DB에 전송
-    router.push("/");
+    router.push("/login");
   };
 
   return (

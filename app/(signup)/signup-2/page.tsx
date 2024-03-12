@@ -24,9 +24,9 @@ export default function SignUp2() {
   return (
     <>
       <p className=" text-xl font-medium text-grey-900">
-        링카이브 서비스 이용약관에
+        아이디에 사용할
         <br />
-        동의해주세요
+        이메일을 입력해주세요
       </p>
       <IdTextfield
         placeholder="linkive@example.com"

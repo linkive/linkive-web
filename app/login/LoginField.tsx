@@ -59,7 +59,6 @@ export default function LoginField() {
   return (
     <div className="w-full h-max px-3">
       <div className="w-full h-max py-5">
-        {" "}
         <IdTextfield
           placeholder="아이디(이메일) 입력"
           name="username"

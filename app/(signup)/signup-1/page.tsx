@@ -23,28 +23,28 @@ export default function SignUp() {
       description: "[필수] 만 14세 이상",
       isRequired: true,
       isAgreed: false,
-      link: "/signup",
+      link: "/signup-1",
     },
     {
       id: 2,
       description: "[필수] 이용약관 동의",
       isRequired: true,
       isAgreed: false,
-      link: "/signup",
+      link: "/signup-1",
     },
     {
       id: 3,
       description: "[필수] 개인정보 처리방침 동의",
       isRequired: true,
       isAgreed: false,
-      link: "/signup",
+      link: "/signup-1",
     },
     {
       id: 4,
       description: "[선택] 광고성 정보 수신 및 마케팅 활용 동의",
       isRequired: false,
       isAgreed: false,
-      link: "/signup",
+      link: "/signup-1",
     },
   ]);
 

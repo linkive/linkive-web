@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "@/style/globals.css";
 import localFont from "next/font/local";
 import Head from "next/head";
+import AuthSession from "./AuthSession";
 
 const pretandard = localFont({
   src: "../public/fonts/PretendardGOVVariable.woff2",
@@ -20,7 +21,9 @@ export default function RootLayout({
   return (
     <>
       <html lang="ko" className={pretandard.className}>
-        <body>{children}</body>
+        <body>
+          <AuthSession>{children}</AuthSession>
+        </body>
       </html>
     </>
   );
