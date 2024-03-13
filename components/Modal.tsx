@@ -41,7 +41,7 @@ export default function Modal({
 
   return (
     <>
-      <div className="  background"></div>
+      <div className="  background" />
       <div className="fixed z-50 top-0 bottom-0 left-0 right-0 m-auto h-max flex flex-col justify-center items-center rounded-lg w-[256px] px-[18px] py-[30px] gap-6 bg-primary-white">
         {children && (
           <div className="flex w-[60px] h-[60px] rounded-full bg-grey-50 justify-center items-center">

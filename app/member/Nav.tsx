@@ -9,14 +9,26 @@ export default function Nav() {
       <nav className="w-full h-[40px] flex">
         <Link className="w-full" href={"/member/id"}>
           <div className="flex gap-2.5 justify-center items-center h-full">
-            <span className="text-sm font-bold text-primary-black">
+            <span
+              className={`text-sm font-semibold ${
+                pathname === "/member/id"
+                  ? "text-primary-black"
+                  : "text-grey-200"
+              } `}
+            >
               아이디 찾기
             </span>
           </div>
         </Link>
         <Link scroll={false} className="w-full" href={"/member/password"}>
           <div className="flex gap-2.5 justify-center items-center h-full ">
-            <span className="text-sm font-bold text-primary-black">
+            <span
+              className={`text-sm font-semibold ${
+                pathname === "/member/password"
+                  ? "text-primary-black"
+                  : "text-grey-200"
+              } `}
+            >
               비밀번호 찾기
             </span>
           </div>

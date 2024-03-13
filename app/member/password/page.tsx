@@ -52,7 +52,7 @@ export default function FindPassword() {
         <p className="text-xl font-medium text-grey-900">
           아이디 / 전화번호를 통해
           <br />
-          가입하신 아이디를 확인할 수 있습니다
+          가입하신 아이디를 확인할 수 있습니다.
         </p>
 
         <div>

@@ -26,7 +26,7 @@ export default function SignUp2() {
       <p className=" text-xl font-medium text-grey-900">
         아이디에 사용할
         <br />
-        이메일을 입력해주세요
+        이메일을 입력해주세요.
       </p>
       <IdTextfield
         placeholder="linkive@example.com"
@@ -40,7 +40,7 @@ export default function SignUp2() {
       />
       <div className="w-full flex flex-grow" />
       <Button
-        text="동의하고 가입하기"
+        text="다음"
         onClick={submitTerms}
         disabled={!isEmailValid || id === ""}
       />

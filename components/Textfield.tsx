@@ -52,6 +52,7 @@ export function Textfield({
     <div>
       <div
         className={`flex w-full items-center h-[50px] gap-2.5 px-[13px] py-2.5 rounded placeholder:text-grey-300 font-medium text-primary-black bg-grey-50  ${cn(
+          { "bg-primary-white": isFocused },
           { "border border-primary-black": isFocused && !error },
           { "border border-primary-red": error },
           className

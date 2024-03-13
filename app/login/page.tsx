@@ -22,7 +22,7 @@ const TopBar = () => {
 export default function Login() {
   const { data: session } = useSession();
   console.log(session);
-  useScrollBlock(true);
+
   return (
     <main className="w-full h-dvh ">
       {/* Topbar */}
@@ -40,12 +40,14 @@ export default function Login() {
           <span>|</span>
           <Link href="/member/password">비밀번호 찾기</Link>
           <span>|</span>
-          <Link href="/signup-1">회원가입</Link>
+          <Link className="text-grey-600" href="/signup-1">
+            회원가입
+          </Link>
         </div>
 
         {/* social login */}
         <div className="flex flex-col w-full px-9 py-5  justify-center text-center gap-5">
-          <span className="font-meidum">SNS 계정으로 로그인하기</span>
+          <span className="font-medium">SNS 계정으로 로그인하기</span>
           <div className="flex justify-between">
             <button onClick={() => signIn("naver")}>
               <Image

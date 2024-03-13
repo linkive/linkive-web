@@ -87,7 +87,7 @@ export default function SignUp() {
       <p className=" text-xl font-medium text-grey-900">
         링카이브 서비스 이용약관에
         <br />
-        동의해주세요
+        동의해주세요.
       </p>
 
       <div className="hidden gap-2.5">

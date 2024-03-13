@@ -26,7 +26,7 @@ export default function SignUp2() {
       <p className=" text-xl font-medium text-grey-900">
         아이디 / 비밀번호 분실 시
         <br />
-        사용할 전화번호를 입력하세요
+        사용할 전화번호를 입력하세요.
       </p>
       <NumberTextfield
         placeholder="01012345678"

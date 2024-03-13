@@ -116,11 +116,7 @@ export default function SignUp2() {
       </div>
 
       <div className="w-full flex flex-grow" />
-      <Button
-        text="동의하고 가입하기"
-        onClick={submitTerms}
-        disabled={!isSamePw}
-      />
+      <Button text="다음" onClick={submitTerms} disabled={!isSamePw} />
     </>
   );
 }

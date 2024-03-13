@@ -38,7 +38,7 @@ export default function FindID() {
         <p className="text-xl font-medium text-grey-900">
           전화번호를 통해
           <br />
-          가입하신 이메일을 확인한 수 있습니다
+          가입하신 이메일을 확인할 수 있습니다.
         </p>
         <NumberTextfield
           placeholder="전화번호 입력(숫자만)"
