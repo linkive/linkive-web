@@ -33,7 +33,8 @@ export const FeedBox = ({ videoId }: FeedboxProps) => {
         </div>
 
         <div className={style.feedBox_product_dropbox_wrapper}>
-          <Image src={"/img/item.png"} width={32} height={43} alt="product" />
+          {/* <Image src={"/img/item.png"} width={32} height={43} alt="product" /> */}
+          <div className="w-8 h-8" />
 
           <div className={style.feedBox_product_dropbox_info}>
             <span className={style.brand}>HERNO</span>

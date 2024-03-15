@@ -9,33 +9,10 @@ export const YouTubeEmbed = ({ videoId }: YoutubeEmbedProps) => {
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const playTimeoutRef = useRef<NodeJS.Timeout | null>(null); // setTimeout을 위한 ref
 
+  //   const { searchParams } = new URL(request.url);
+  //   const id = searchParams.get("id");
   useEffect(() => {
     setIsClient(true);
-
-    async function fetchVideoUrl() {
-      try {
-        // Fetch 요청
-        const response = await fetch("https://api.linkive.co.kr/test/log", {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-
-            Authorization: "Bearer 1234",
-          },
-        });
-
-        if (!response.ok) {
-          throw new Error("Network response error");
-        }
-
-        const data = await response.json();
-        console.log(data);
-      } catch (error) {
-        console.error("Error occurs", error);
-      }
-    }
-
-    fetchVideoUrl();
   }, []);
 
   useEffect(() => {
@@ -95,7 +72,7 @@ export const YouTubeEmbed = ({ videoId }: YoutubeEmbedProps) => {
       playsInline
       loop
     >
-      <source src={`/video/output_video${videoId}.mp4`} type="video/mp4" />
+      <source src={videoId} type="video/mp4" />
     </video>
   ) : (
     <></>
