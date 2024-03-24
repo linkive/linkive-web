@@ -11,17 +11,14 @@ export default function Login() {
     async function fetchVideoUrl() {
       try {
         // Fetch 요청
-        const response = await fetch(
-          "https://api.linkive.co.kr/app/user/film",
-          {
-            method: "GET",
-            headers: {
-              "Content-Type": "application/json",
+        const response = await fetch("https://api.linkive.co.kr/test/log", {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
 
-              Authorization: "Bearer 1234",
-            },
-          }
-        );
+            Authorization: "Bearer 1234",
+          },
+        });
 
         if (!response.ok) {
           throw new Error("Network response error");
@@ -29,7 +26,7 @@ export default function Login() {
 
         const data = await response.json();
 
-        console.log(data["result"]);
+        console.log(data);
       } catch (error) {
         console.error("Error occurs", error);
       }

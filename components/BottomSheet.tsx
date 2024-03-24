@@ -1,29 +1,40 @@
-import React, { useState } from "react";
+import style from "@/style/bottomSheet.module.css";
+import React, { useState, ReactNode, useEffect } from "react";
+import cn from "classnames";
+import useScrollBlock from "@/hooks/useScrollBlock";
 
 interface BottomSheeetProps {
-  isOpen: boolean;
-  onClose: () => void;
+  firstHeight?: number;
+  onOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  children: ReactNode;
 }
 
-const BottomSheet = ({ isOpen, onClose }: BottomSheeetProps) => {
+const BottomSheet = ({
+  onOpen,
+  children,
+  firstHeight = 386,
+}: BottomSheeetProps) => {
+  useScrollBlock(true);
+
   return (
-    <div
-      className={`fixed inset-0 bg-black bg-opacity-45 z-40 transition-opacity ${
-        isOpen ? "opacity-100" : "opacity-0 pointer-events-none"
-      }`}
-      onClick={onClose}
-    >
+    <>
+      <button
+        className={`fixed inset-0 bg-black z-20 opacity-45`}
+        onClick={() => onOpen(false)}
+      />
       <div
-        className={`fixed bottom-0 left-0 right-0 bg-white p-5 rounded-t-lg transition-transform ${
-          isOpen ? "translate-y-0" : "translate-y-full"
-        }`}
+        className={`safeArea fixed max-width m-auto z-30 bottom-0 left-0 right-0 bg-white rounded-t-lg transition-transform`}
+        style={{ height: firstHeight }}
         onClick={(e) => e.stopPropagation()}
       >
-        {/* 여기에 Bottom Sheet 내용을 추가 */}
-        <p>Your content here</p>
-        <button onClick={onClose}>Close</button>
+        <div className="flex justify-center rounded-t-lg items-center w-full h-7 bg-inherit">
+          <div className="w-[60px] h-1 bg-grey-200" />
+        </div>
+        <div className="w-full" style={{ height: firstHeight - 28 }}>
+          {children}
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

@@ -24,10 +24,10 @@ export default function Login() {
   console.log(session);
 
   return (
-    <main className="w-full h-dvh ">
+    <main className="w-full h-dvh belowTopBar">
       {/* Topbar */}
       <TopBar />
-      <div className="flex flex-col belowTopBar w-full h-full">
+      <div className="flex flex-col w-full h-full">
         {/* logo */}
         <div className="w-full  h-[100px] text-center"></div>
 

@@ -1,48 +1,149 @@
 "use client";
-import Image from "next/image";
-import style from "@/style/feedBox.module.css";
+
 import { YouTubeEmbed } from "./Youtube";
+import DropDown from "@/public/icon/arrow_down.svg";
+import Image from "next/image";
+import BottomSheet from "./BottomSheet";
+import { useState } from "react";
+import { Button } from "./Button";
+import HeartActive from "@/public/icon/heart_on.svg";
+import HeartInactive from "@/public/icon/heart_off.svg";
 
 export interface FeedboxProps {
+  profileImgUrl?: string;
+  celebName?: string;
+  updateDate?: string;
+
+  // cody information
+  codyVideoID?: string;
+  codyThumbNailUrl?: string;
+
+  // producti information
+  productImgurl?: string;
+  productIndex?: string;
+  productSiteName?: string;
+  productPrice?: string;
+  productSalePrice?: string;
+
   videoId: string;
 }
 
 export const FeedBox = ({ videoId }: FeedboxProps) => {
+  const [showProductSheet, setShowProductSheet] = useState(false);
+  const link = "https://d1wa6tg9pd3mhn.cloudfront.net/";
   return (
-    <div className={style.feedBox_container}>
-      <div className={style.feedBox_profileBar}>
-        <div className={style.feedBox_profile_image} />
-        <div className={style.feedBox_userInfo}>
-          <span className={style.feedBox_username}>username</span>
-          <span className={style.feedBox_date}>2023.01.16</span>
-        </div>
-      </div>
-      <div className={style.feedBox_video}>
-        <YouTubeEmbed videoId={videoId} />
-      </div>
-
-      <button
-        onClick={() => {}}
-        className={style.feedBox_product_dropbox_container}
-      >
-        <div className={style.feedBox_product_info}>
-          <span className={style.feedBox_product_info_description}>
-            코디 상품 모아보기
-          </span>
-          <span className={style.feedBox_product_info_count}>05</span>
-        </div>
-
-        <div className={style.feedBox_product_dropbox_wrapper}>
-          {/* <Image src={"/img/item.png"} width={32} height={43} alt="product" /> */}
-          <div className="w-8 h-8" />
-
-          <div className={style.feedBox_product_dropbox_info}>
-            <span className={style.brand}>HERNO</span>
-            <span className={style.productName}>
-              스트링 하이넥 후드 구스다운 패딩 코트
-            </span>
+    <>
+      <div className=" inline-flex py-3 flex-col w-full gap-[14px]">
+        <div className="flex w-full px-3 items-center gap-2.5">
+          <div className="relative block w-[30px] h-[30px] rounded-full bg-slate-400 overflow-hidden">
+            <Image fill={true} alt="image" src={link + "profile_test.webp"} />
+          </div>
+          <div className="flex flex-col justify-center items-start">
+            <span className="text-xs font-medium text-grey-800">username</span>
+            <span className="text-xs text-grey-400">2023.01.16</span>
           </div>
         </div>
+        <div className="relative block w-full min-h-[211px] bg-slate-400">
+          <YouTubeEmbed videoId={link + "test1.mp4"} />
+        </div>
+
+        <button
+          onClick={() => {
+            setShowProductSheet(true);
+          }}
+          className="flex flex-col items-center w-full gap-2.5 px-3"
+        >
+          <div className="flex w-full items-start gap-1">
+            <span className="text-xs font-medium text-grey-500">코디 상품</span>
+            <span className="text-xs font-medium text-primary-red">05</span>
+          </div>
+
+          <div className="flex w-full px-3 py-1.5 justify-start items-center gap-2.5 rounded-lg border border-grey-100">
+            {/* <Image src={"/img/item.png"} width={32} height={43} alt="product" /> */}
+            <Image
+              width={33}
+              height={44}
+              alt="image"
+              src={link + "product_test_1.webp"}
+            />
+
+            <div className="flex flex-grow flex-col justify-center items-start gap-1">
+              <span className="text-xs font-medium text-grey-400">HERNO</span>
+              <span className="text-xs font-medium text-grey-800">
+                스트링 하이넥 후드 구스다운 패딩 코트
+              </span>
+            </div>
+
+            <DropDown />
+          </div>
+        </button>
+      </div>
+
+      {showProductSheet && <FeedBoxBottomSheet onOpen={setShowProductSheet} />}
+    </>
+  );
+};
+
+interface FeedBoxBottomSheetProps {
+  onOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const FeedBoxBottomSheet = ({ onOpen }: FeedBoxBottomSheetProps) => {
+  return (
+    <BottomSheet onOpen={onOpen}>
+      <div className="inline-flex flex-col px-3 items-center w-full">
+        <div className="flex w-full h-6 items-start gap-1">
+          <span className="text-sm font-medium text-primary-black">
+            코디 상품 모아보기
+          </span>
+          <span className="text-sm font-semibold text-primary-red">4</span>
+        </div>
+
+        {/* 4번 반복 */}
+        <div className="flex flex-col w-full h-[244px] gap-2 pt-2 overflow-y-scroll">
+          <FeedBoxProductDropBox />
+          <FeedBoxProductDropBox />
+          <FeedBoxProductDropBox />
+          <FeedBoxProductDropBox />
+        </div>
+
+        {/* 반복 끝 */}
+        <div className="w-full h-5 bg-primary-white" />
+        <Button text="영상 속 코디보기" onClick={() => onOpen} />
+      </div>
+    </BottomSheet>
+  );
+};
+
+//TODO: heart눌렀을 때 count하는 코드
+
+const FeedBoxProductDropBox = () => {
+  const [heart, setHeart] = useState(false);
+  const link = "https://d1wa6tg9pd3mhn.cloudfront.net/";
+
+  return (
+    <div className=" flex items-center w-full h-full gap-2.5 p-3 border border-grey-50 rounded-md">
+      <Image
+        src={link + "product_test_2.webp"}
+        width={66}
+        height={88}
+        alt="product"
+      />
+      <div className=" flex flex-col h-[88px] flex-grow justify-start items-start gap-2">
+        <div className="flex flex-grow flex-col ">
+          <span className="text-xs font-medium text-grey-400">HERNO</span>
+          <span className="text-xs font-medium text-primary-black mt-1">
+            스트링 하이넥 후드 구스다운 패딩
+          </span>
+        </div>
+
+        <div className="flex gap-1">
+          <span className="text-sm font-semibold text-primary-red">10%</span>
+          <span className="text-sm font-semibold text-grey-900">106,000원</span>
+        </div>
+      </div>
+      <button onClick={() => setHeart((heart) => !heart)}>
+        {heart ? <HeartActive /> : <HeartInactive />}
       </button>
     </div>
   );
