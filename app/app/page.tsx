@@ -1,9 +1,29 @@
+"use client";
+
 import Divider from "@/components/Divider";
-import FeedBox from "@/components/FeedBox";
+import FeedBox from "@/app/app/FeedBox";
 import RankBar from "./RankBar";
 
 import Image from "next/image";
 import { BaseTopBar } from "@/components/TopBar";
+
+import React, { useRef, useEffect, useMemo, Suspense } from "react";
+import { useInfiniteQuery } from "@tanstack/react-query";
+import useInfiniteVideos from "@/hooks/useVideos";
+import HomeSkeleton from "./loading";
+
+export default function Home() {
+  return (
+    <main className="w-full h-max flex flex-col items-center belowTopBar aboveNavBar">
+      <TopBar />
+      <RankBar />
+      <Divider />
+      <Suspense fallback={<HomeSkeleton />}>
+        <InfiniteVideosFeed />
+      </Suspense>
+    </main>
+  );
+}
 
 const TopBar = () => {
   return (
@@ -25,25 +45,66 @@ const TopBar = () => {
   );
 };
 
-export default function Home() {
-  const url = "https://d3ez73fw0zma30.cloudfront.net/";
+const InfiniteVideosFeed = () => {
+  const { data, fetchNextPage, hasNextPage, isFetchingNextPage } =
+    useInfiniteVideos();
 
-  const links = [];
+  const loadMoreRef = useRef(null);
 
-  for (let i = 1; i <= 6; i++) {
-    links.push(url + "output_s_video" + i + ".mp4");
-    links.push(url + "output_video" + i + ".mp4");
-  }
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting && hasNextPage) {
+          console.log("intersect");
+          fetchNextPage();
+        }
+      },
+      {
+        rootMargin: "200%",
+        threshold: 0,
+      }
+    );
+
+    if (loadMoreRef.current) {
+      observer.observe(loadMoreRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, [hasNextPage, fetchNextPage]);
 
   return (
-    <main className="w-full h-max belowTopBar">
-      <TopBar />
-      <RankBar />
-      <Divider />
-      {links.map((index: string) => (
-        <FeedBox key={index} videoId={index} />
-      ))}
-      <div className="w-full h-svh bg-white" />
-    </main>
+    <>
+      {data ? (
+        <>
+          {data.pages.map((page, i) =>
+            page.videos.map((videoUrl, index) => (
+              <FeedBox key={`${videoUrl}-${index}`} videoUrl={videoUrl} />
+            ))
+          )}
+
+          <div
+            ref={loadMoreRef}
+            className="w-full h-[200px] bg-grey-50 justify-center items-center"
+          >
+            {isFetchingNextPage && (
+              <div className="w-full h-full flex bg-grey-50 justify-center items-center">
+                <Image
+                  className="animate-spin"
+                  src={"/icon/spinner.png"}
+                  quality={100}
+                  width={30}
+                  height={30}
+                  alt="spinner"
+                />
+              </div>
+            )}
+          </div>
+        </>
+      ) : (
+        Array.from({ length: 13 }, (_, index) => index).map((index) => (
+          <HomeSkeleton key={index} />
+        ))
+      )}
+    </>
   );
-}
+};

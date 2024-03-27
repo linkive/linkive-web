@@ -4,6 +4,8 @@ import localFont from "next/font/local";
 import Head from "next/head";
 import AuthSession from "./AuthSession";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import ReactQueryProviders from "@/lib/react-query-provider";
+import React from "react";
 
 const pretandard = localFont({
   src: "../public/fonts/PretendardGOVVariable.woff2",
@@ -23,7 +25,10 @@ export default function RootLayout({
     <>
       <html lang="ko" className={pretandard.className}>
         <body>
-          <AuthSession>{children}</AuthSession>
+          <ReactQueryProviders>
+            <AuthSession>{children}</AuthSession>
+          </ReactQueryProviders>
+
           <SpeedInsights />
         </body>
       </html>

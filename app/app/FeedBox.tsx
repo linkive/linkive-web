@@ -1,13 +1,15 @@
 "use client";
 
-import { YouTubeEmbed } from "./Youtube";
+import { YouTubeEmbed } from "../../components/Youtube";
 import DropDown from "@/public/icon/arrow_down.svg";
 import Image from "next/image";
-import BottomSheet from "./BottomSheet";
-import { useState } from "react";
-import { Button } from "./Button";
+import BottomSheet from "../../components/BottomSheet";
+import { Suspense, useEffect, useState } from "react";
+import { Button } from "../../components/Button";
 import HeartActive from "@/public/icon/heart_on.svg";
 import HeartInactive from "@/public/icon/heart_off.svg";
+import HeartMediumActive from "@/public/icon/heart_m_on.svg";
+import HeartMediumInactive from "@/public/icon/heart_m_off.svg";
 
 export interface FeedboxProps {
   profileImgUrl?: string;
@@ -25,17 +27,19 @@ export interface FeedboxProps {
   productPrice?: string;
   productSalePrice?: string;
 
-  videoId: string;
+  videoUrl: string;
 }
 
-export const FeedBox = ({ videoId }: FeedboxProps) => {
+export const FeedBox = ({ videoUrl }: FeedboxProps) => {
   const [showProductSheet, setShowProductSheet] = useState(false);
+  const [heart, setHeart] = useState(false);
   const link = "https://d1wa6tg9pd3mhn.cloudfront.net/";
+
   return (
     <>
-      <div className=" inline-flex py-3 flex-col w-full gap-[14px]">
+      <div className=" inline-flex py-3 flex-col w-full gap-3">
         <div className="flex w-full px-3 items-center gap-2.5">
-          <div className="relative block w-[30px] h-[30px] rounded-full bg-slate-400 overflow-hidden">
+          <div className="relative block w-[30px] h-[30px] rounded-full overflow-hidden">
             <Image fill={true} alt="image" src={link + "profile_test.webp"} />
           </div>
           <div className="flex flex-col justify-center items-start">
@@ -43,8 +47,15 @@ export const FeedBox = ({ videoId }: FeedboxProps) => {
             <span className="text-xs text-grey-400">2023.01.16</span>
           </div>
         </div>
-        <div className="relative block w-full min-h-[211px] bg-slate-400">
-          <YouTubeEmbed videoId={link + "test1.mp4"} />
+        {/* <div className="relative block w-full min-h-[211px] bg-slate-400" style={{}}> */}
+        <div className="relative block w-full" style={{ paddingTop: "56.25%" }}>
+          <button
+            className="absolute z-10 top-4 right-[14px]"
+            onClick={() => setHeart((heart) => !heart)}
+          >
+            {heart ? <HeartMediumActive /> : <HeartMediumInactive />}
+          </button>
+          <YouTubeEmbed videoId={videoUrl} />
         </div>
 
         <button
@@ -67,10 +78,12 @@ export const FeedBox = ({ videoId }: FeedboxProps) => {
               src={link + "product_test_1.webp"}
             />
 
-            <div className="flex flex-grow flex-col justify-center items-start gap-1">
-              <span className="text-xs font-medium text-grey-400">HERNO</span>
-              <span className="text-xs font-medium text-grey-800">
-                스트링 하이넥 후드 구스다운 패딩 코트
+            <div className="flex flex-grow flex-col justify-center items-start gap-1 text-left">
+              <span className="text-xs font-medium text-grey-400 line-clamp-1">
+                HERNO
+              </span>
+              <span className="text-xs font-medium text-grey-800 line-clamp-1">
+                스트링 하이넥 후드 구스다운
               </span>
             </div>
 
@@ -129,12 +142,16 @@ const FeedBoxProductDropBox = () => {
         height={88}
         alt="product"
       />
-      <div className=" flex flex-col h-[88px] flex-grow justify-start items-start gap-2">
+
+      <div className="flex flex-col h-[88px] flex-grow justify-center items-start text-left gap-2">
         <div className="flex flex-grow flex-col ">
-          <span className="text-xs font-medium text-grey-400">HERNO</span>
-          <span className="text-xs font-medium text-primary-black mt-1">
-            스트링 하이넥 후드 구스다운 패딩
+          <span className="text-xs font-medium text-grey-400 line-clamp-1">
+            HERNO
           </span>
+          <p className="text-xs font-medium text-primary-black mt-1 line-clamp-2">
+            스트링 하이넥 후드 구스다운 패딩 패딩 패딩 팯패패패패 디읻읻이딩
+            팯패딩딩딩팽딩
+          </p>
         </div>
 
         <div className="flex gap-1">

@@ -20,7 +20,7 @@ export const RankBar = () => {
     }, 2000);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [info.length]);
   return (
     <div className="flex w-full h-[46px]">
       <div

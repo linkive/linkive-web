@@ -27,6 +27,10 @@ const config: Config = {
         "grey-800": "var(--grey-800)",
         "grey-900": "var(--grey-900)",
       },
+      backgroundImage: {
+        "skeleton-gradient":
+          "linear-gradient(90deg, #E1E1E1 0%, rgba(225, 225, 225, 0.50) 100%);",
+      },
       boxShadow: {
         btn: "0px 0px 4px rgba(0, 0, 0, 0.50)",
       },

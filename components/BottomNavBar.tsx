@@ -33,7 +33,10 @@ export default function BottomNavBar() {
   ];
 
   return (
-    <div className="safeArea max-width fixed flex justify-between w-full h-[52px] py-3 px-9 bottom-0 left-0 right-0 m-auto bg-primary-white opacity-95">
+    <div
+      style={{ height: "var(--nav-bar-height)" }}
+      className="safeArea max-width fixed flex justify-between w-full  py-3 px-9 bottom-0 left-0 right-0 m-auto bg-primary-white opacity-95"
+    >
       {navItems.map(({ path, iconOn, iconOff, label }) => (
         <div key={path} className="flex flex-col justify-center items-center">
           <Image

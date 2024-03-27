@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import VideoPlayer from "./Video";
 
 export interface YoutubeEmbedProps {
   videoId: string;
@@ -9,8 +10,6 @@ export const YouTubeEmbed = ({ videoId }: YoutubeEmbedProps) => {
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const playTimeoutRef = useRef<NodeJS.Timeout | null>(null); // setTimeout을 위한 ref
 
-  //   const { searchParams } = new URL(request.url);
-  //   const id = searchParams.get("id");
   useEffect(() => {
     setIsClient(true);
   }, []);
@@ -28,7 +27,7 @@ export const YouTubeEmbed = ({ videoId }: YoutubeEmbedProps) => {
               clearTimeout(playTimeoutRef.current);
             }
 
-            // 1초 후에 실행될 함수
+            // n초 후에 실행될 함수
             playTimeoutRef.current = setTimeout(() => {
               if (entry.isIntersecting) {
                 videoElement.setAttribute("autoplay", "autoplay");
@@ -63,17 +62,23 @@ export const YouTubeEmbed = ({ videoId }: YoutubeEmbedProps) => {
   });
 
   return isClient ? (
-    <video
-      ref={videoRef}
-      width="100%"
-      height="100%"
-      muted
-      preload="auto"
-      playsInline
-      loop
-    >
-      <source src={videoId} type="video/mp4" />
-    </video>
+    // <div>
+    //   <video
+    //     ref={videoRef}
+    //     width="100%"
+    //     height="100%"
+    //     muted
+    //     preload="auto"
+    //     playsInline
+    //     loop
+    //   >
+    //     <source src={videoId} type="video/mp4" />
+    //   </video>
+    //   <div className=" w-full h-0.5 bg-grey-200 ">
+
+    //   </div>
+    // </div>
+    <VideoPlayer ref={videoRef} src={videoId} />
   ) : (
     <></>
   );
